@@ -10,7 +10,7 @@ function addTask() {
         // Create a new list item
         const li = document.createElement('li');
         li.innerHTML = `
-            ${taskText}
+            <p>${taskText}</p>
             <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
         `;
 
@@ -37,10 +37,11 @@ function deleteTask(element) {
 // Function to save tasks to local storage
 function saveTasksToLocalStorage() {
     const tasks = [];
-    const taskElements = document.querySelectorAll('li');
+    const taskElements = document.querySelectorAll('li p');
 
     taskElements.forEach((taskElement) => {
         tasks.push(taskElement.textContent.trim());
+        console.log(taskElement.textContent.trim());
     });
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -56,7 +57,7 @@ function loadTasksFromLocalStorage() {
         tasks.forEach((taskText) => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${taskText}
+                <p>${taskText}</p>
                 <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
             `;
             taskList.appendChild(li);
