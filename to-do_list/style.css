@@ -6,15 +6,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    height: 100vh;
 }
 
 .container {
     text-align: center;
     background-color: #fff;
     padding: 20px;
+    width: 290px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 input[type="text"] {

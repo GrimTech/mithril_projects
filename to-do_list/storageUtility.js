@@ -1,8 +1,9 @@
 const storageUtility = {
     tasks: [],
     error: '',
+    taskElements: document.querySelectorAll('li p'),
     
-    addTask: ( taskText ) => {
+    addTask: function( taskText ) {
         // taskText.trim() !== '' ? this.tasks.push(taskText) : this.error.push('empty task');
         if ( taskText.trim() !== '' ) {
             this.tasks.push( taskText );
@@ -13,19 +14,27 @@ const storageUtility = {
         }
     },
 
-    saveTasksToLocalStorage: () => {
-        const taskElements = document.querySelectorAll('li p');
-
-        taskElements.forEach(( taskElement ) => {
-            tasks.push(taskElement.textContent.trim());
+    saveTasksToLocalStorage: function() {
+        this.taskElements.forEach(( taskElement ) => {
+            this.tasks.push(taskElement.textContent.trim());
         })
-        localStorage.setItem('tasks', JSON.stringify( tasks ));
+        localStorage.setItem('tasks', JSON.stringify( this.tasks ));
     },
 
-    loadTasksFromLocalStorage: () => {
+    loadTasksFromLocalStorage: function() {
         const storedTasks = localStorage.getItem('tasks');
 
-        storedTasks ? this.tasks = JSON.parse( storedTasks ) : this.error = "No tasks stored";
+        if (storedTasks) {
+            this.tasks = JSON.parse(storedTasks);
+        } 
+        else {
+            this.error = "No tasks stored";
+        }
+    },
+
+    deleteTask: function(index) {
+        this.tasks.splice(index, 1);
+        this.saveTasksToLocalStorage();
     }
 }
 

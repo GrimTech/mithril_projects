@@ -1,3 +1,21 @@
+import { storageUtility } from './storageUtility.js';
+import { TodoList } from './todoListView.js';
+
+// window.storageUtility = storageUtility;
+
+// console.log(window.storageUtility)
+// define variable to hold input value
+let taskInput = '';
+
+// define variable to hold body element
+let root = document.body;
+
+// Load tasks from local storage when the page is loaded
+storageUtility.loadTasksFromLocalStorage();
+
+// Create the app
+m.mount(root, TodoList);
+
 // Selecting DOM elements
 // const taskInput = document.getElementById('taskInput');
 // const taskList = document.getElementById('taskList');
@@ -63,22 +81,3 @@
 //         });
 //     }
 // }
-
-// import the necessary files
-import { storageUtility } from 'storageUtility.js';
-import { TodoList } from './todoListView';
-
-// define variable to hold input value
-let taskInput = '';
-
-// define variable to hold body element
-let root = document.body;
-
-// Load tasks from local storage when the page is loaded
-storageUtility.loadTasksFromLocalStorage();
-
-// Create the app
-m.mount(root, TodoList);
-
-
-

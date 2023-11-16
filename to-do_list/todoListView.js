@@ -1,18 +1,25 @@
+import { storageUtility } from './storageUtility.js';
+
 const TodoList = {
-    view: () => {
+    // storageUtility: {},
+    // bringStoUtiInScope: function(storageUtility) {
+    //     this.storageUtilty = storageUtility;
+    // },
+    taskInput: '',
+
+    view: function() {
         return m('.container', [
             m('h1', 'Todo List'),
-            m('input', {
-                type: text,
+            m('input[type=text]', {
                 placeholder: "Add new task",
-                oninput: () => {
-                    taskInput = e.target.value;
+                oninput: (e) => {
+                    this.taskInput = e.target;
                 }
             }),
             m('button', {
                 onclick: () => {
-                    storageUtility.addTask(taskInput);
-                    taskInput = '';
+                    storageUtility.addTask(this.taskInput.value);
+                    this.taskInput.value = '';
                 },
             }, 'Add Task'),
             m("ul", storageUtility.tasks.map(function (task, index) {
